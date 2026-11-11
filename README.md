@@ -1,30 +1,16 @@
 # Autonomous Python Developer (APD)
 
-APD v0.1.0 is a local AI coding agent that plans changes, presents complete proposed file contents, requires explicit human approval before writing, and runs Python compilation and pytest checks.
+APD v0.1.0 is a local AI coding-agent prototype. The implementation package was prepared separately and includes a FastAPI dashboard, an OpenAI-compatible LLM adapter, workspace inspection, approval-gated file changes, SQLite task history, and Python compile/pytest checks.
 
-## Source package
+## Runtime requirements
+- Python 3.11+
+- An OpenAI-compatible chat-completions endpoint (Ollama, OpenRouter, or OpenAI)
 
-The complete source package is available at [APD v0.1.0 ZIP](./APD-v0.1.0.zip). Extract it, then follow the included README for setup and configuration.
+## Intended setup
+Extract the APD source package, install the dependencies from `requirements.txt`, copy `.env.example` to `.env`, run `python -m apd doctor`, then start the local dashboard with `python -m apd serve`.
 
-## Stack
-- FastAPI local dashboard
-- OpenAI-compatible LLM endpoint (Ollama, OpenRouter, or OpenAI)
-- SQLite task history
-- Workspace-scoped file operations and path traversal protection
-- Approval-gated writes
-- compileall and pytest verification
+## Safety
+Generated changes require human approval before writes. File operations are restricted to the configured workspace. Keep the server bound to localhost; do not expose it publicly.
 
-## Quick start (Windows PowerShell)
-```powershell
-py -3.11 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-Copy-Item .env.example .env
-python -m apd doctor
-python -m apd serve
-```
-
-Open http://127.0.0.1:8765. Review generated changes before approving them. Keep the local server bound to localhost; do not expose it publicly.
-
-## Status
-Initial implementation committed for review. Syntax compilation was checked when packaged; provider integration and full runtime tests still need to be run in the target environment.
+## Repository status
+This branch currently contains this project overview only. The complete source tree has **not** been pushed in this commit, and the README should not be treated as evidence that the repository is runnable yet.
